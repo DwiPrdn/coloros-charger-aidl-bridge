@@ -1,0 +1,26 @@
+service oplus_charger_hal_service /vendor/odm/bin/hw/vendor.oplus.hardware.charger-V6-service
+    interface aidl vendor.oplus.hardware.charger.ICharger/default
+    class hal
+    user system
+    group system
+
+on boot
+    chown system system /sys/class/power_supply/battery/constant_charge_current_max
+    chmod 0664 /sys/class/power_supply/battery/constant_charge_current_max
+    chown system system /sys/class/power_supply/battery/charge_control_limit
+    chmod 0664 /sys/class/power_supply/battery/charge_control_limit
+    chown system system /sys/class/power_supply/battery/smart_chg
+    chmod 0664 /sys/class/power_supply/battery/smart_chg
+    chown system system /sys/class/power_supply/battery/night_charging
+    chmod 0664 /sys/class/power_supply/battery/night_charging
+
+on property:sys.boot_completed=1
+    chmod 0666 /sys/class/power_supply/battery/current_now
+    chown system system /sys/class/power_supply/battery/constant_charge_current_max
+    chmod 0664 /sys/class/power_supply/battery/constant_charge_current_max
+    chown system system /sys/class/power_supply/battery/charge_control_limit
+    chmod 0664 /sys/class/power_supply/battery/charge_control_limit
+    chown system system /sys/class/power_supply/battery/smart_chg
+    chmod 0664 /sys/class/power_supply/battery/smart_chg
+    chown system system /sys/class/power_supply/battery/night_charging
+    chmod 0664 /sys/class/power_supply/battery/night_charging
